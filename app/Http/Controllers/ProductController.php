@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Admin\Product;
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\Admin\Category;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::where('user_id', Auth::id())->paginate(5);
         return view('admin.products.index', compact('products'));
     }
 
@@ -69,6 +75,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'description' => $request->description,
             'category_id' => $request->category_id,
+            'user_id' => Auth::id(),
         ]);
 
         return redirect()->route('products.index')->with('success', 'تم إضافة المنتج بنجاح');
@@ -171,6 +178,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('products.index')->with('success', 'تم خذف المنتج بنجاخ');
+        return redirect()->route('products.index')->with('success', 'تم خذف المنتج بنجاح');
     }
 }

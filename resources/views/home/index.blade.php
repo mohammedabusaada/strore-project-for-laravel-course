@@ -44,12 +44,12 @@
         <h3 class="mb-4 fw-bold">اختر فئة المنتجات</h3>
 
         <div class="category-filter d-flex flex-wrap justify-content-center gap-3 mb-4">
-            <a href="{{ route('home') }}" class="category-item {{ request('category') ? '' : 'active' }}">
+            <a href="{{ route('home-front') }}" class="category-item {{ request('category') ? '' : 'active' }}">
                 <div class="btn btn-outline-primary btn-lg px-4">الكل</div>
             </a>
 
             @foreach ($categories as $category)
-                <a href="{{ route('home', ['category' => $category->id]) }}"
+                <a href="{{ route('home-front', ['category' => $category->id]) }}"
                     class="category-item {{ request('category') == $category->id ? 'active' : '' }}">
                     <div class="btn btn-outline-primary btn-lg px-4">{{ $category->name }}</div>
                 </a>
@@ -107,7 +107,7 @@
         @else
             <div class="alert alert-info text-center my-5">
                 <h4>لا توجد منتجات في هذه الفئة</h4>
-                <p>يرجى اختيار فئة أخرى أو العودة إلى <a href="{{ route('home') }}" class="alert-link">جميع المنتجات</a>
+                <p>يرجى اختيار فئة أخرى أو العودة إلى <a href="{{ route('home-front') }}" class="alert-link">جميع المنتجات</a>
                 </p>
             </div>
         @endif

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
     {{-- Alert the admin about the operation --}}
@@ -71,6 +71,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+                {{$products->links()}}
+            </div>
         </div>
     </div>
 @endsection

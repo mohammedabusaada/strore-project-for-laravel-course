@@ -17,12 +17,12 @@ return new class extends Migration
             $table->integer('quantity');
             $table->decimal('price', 8, 2);
             $table->text('description')->nullable();
-            $table->unsignedBigInteger('category_id'); // استخدام category_id بدلاً من category
+            $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
-    
+
 
     /**
      * Reverse the migrations.
